@@ -13,7 +13,7 @@ Originally, <strong>PIR</strong> (Premier Information Retrieval®) was a researc
 an individual's  personal environment via means of retrieving data from outside the parameters of patterns 
 and perform retrieval of information on the boundaries of six <i>set</i> points of data. 
 <strong>PIR</strong> is multi-faceted in the context that this software will be utilized in multiple 
-erformances of customized "events" for different purposes. This genetic algorithm is just one part 
+performances of customized "events" for different purposes. This genetic algorithm is just one part 
 of many stages of <strong>PIR</strong> and its capabilities.
 
 This genetic algorithm is part of the ongoing research project, <strong>PIR</strong>.
@@ -47,13 +47,13 @@ to the <strong>PIR</strong> research project.
 
 ****************************************************************
 
-<i>Permission to modify this software program for the purpose
-of being contributive to the programming of this software,
-is hereby granted on the condition that the above copyright notice 
-appear in all copies and that both the copyright notice and this 
-permission notice and warranty disclaimer appear in supporting documentation, 
-and that the name of Desmond J. Watson not be used in advertising or publicity 
-pertaining to distribution of the software without specific written prior permission.</i>
+<i>Permission to use, copy, modify and distribute this software and
+its documentation for any purpose, and for a fee, is hereby granted 
+on the condition that the above copyright notice  appear in all copies 
+and that both the copyright notice and this permission notice and warranty 
+disclaimer appear in supporting documentation, and that the name of 
+Desmond J. Watson not be used in advertising or publicity pertaining to 
+distribution of the software without specific written prior permission.</i>
 
 <i>The owners of this software, Desmond J. Watson and The Hexagon Lavish, 
 disclaims all warranties with regards to this software, including all implied
