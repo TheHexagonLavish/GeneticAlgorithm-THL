@@ -42,7 +42,10 @@ It's intended that the GA will be an addition to the PCA model and Gaussian mixt
 to the <strong>PIR</strong> research project. 
 
 
-<h3>© 2013 The Hexagon Lavish. All Rights Reserved.</h3>
+
+
+
+****************************************************************
 
 <i>Permission to modify this software program for the purpose
 of being contributive to the programming of this software,
@@ -60,3 +63,6 @@ any special, indirect or consequential damages or any damages whatsoever
 resulting from loss of use, data or profits, whether in an action of contract, 
 negligence or other tortious action, arising out of or in, connection with the 
 use or performance of this software.</i>
+
+
+<h3>© 2013 The Hexagon Lavish. All Rights Reserved.</h3>
