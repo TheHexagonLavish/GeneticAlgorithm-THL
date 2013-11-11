@@ -1,8 +1,6 @@
 GeneticAlgorithm-THL
 ====================
 
-<h2> **README IN PROGRESS**</h2>
-
 
 <h3>Genetic algorithm for personal environments</h3>
 
@@ -63,6 +61,8 @@ any special, indirect or consequential damages or any damages whatsoever
 resulting from loss of use, data or profits, whether in an action of contract, 
 negligence or other tortious action, arising out of or in, connection with the 
 use or performance of this software.</i>
+
+******************************************************************
 
 
 <h3>© 2013 The Hexagon Lavish. All Rights Reserved.</h3>
