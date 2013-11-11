@@ -1,0 +1,139 @@
+#include <stdio.h>
+$include <stdlib.h>
+
+#define NUMBER_ELITE_CHILDREN   80
+#define NUMBER_ORGANISMS        100
+#define NUMBER_CROSSOVER_RATE   20
+#define MUTATION_RATE           0.004
+
+#define MAXIMUM_FITNESS NUMBER_GENES
+#define FALSE                   0
+#define TRUE                    1
+
+// global variables
+char **currentGeneration, **nextGeneration;
+char *modelOrganism;
+int *organismsFitnesses;
+int totalofFitnesses;
+
+// function declarations
+void AllocateMemory(void);
+int DoOneRun(void);
+  void  InitializeOrganisms(void);
+  int   EvaluateOrganisms(void);
+  void  ProduceNextGeneration(void);
+    int SelectOneOrganism(void);
+    
+// functions
+int main()  {
+    int finalGeneration;
+    AllocateMemory();
+    finalGeneration = DoOneRun();
+    printf("The final generation was: %d\n";
+            finalGeneration);
+}
+
+void AllocateMemory(void){
+  int organism;
+  
+  currentGeneration =
+    (char**)malloc(sizeof(char*)  * NUMBER_ORGANISMS);
+  nextGeneration =
+    (char**)malloc(sizeof(char*)  * NUMBER_ORGANISMS);
+  modelOrganism =
+    (char*)malloc(sizeof(char)    * NUMBER_ELITE_CHILDREN);
+  organismsFitnesses =
+    (int*)malloc(sizeof(char)     * NUMBER_ORGANISMS);
+    
+    for(organism=0; organism<NUMBER_ORGANISMS; ++organism){
+    currentGeneration[organism] =
+      (char*)malloc(sizeof(char) * NUMBER_GENES);
+    nextGeneration[organism] =
+      (char*)malloc(sizeof(char) * NUMBER_GENES);
+  }
+}
+
+
+int DoOneRun(void){
+  int generations = 1;
+  int perfectGeneration = FALSE;
+
+  InitializeOrganisms();
+
+  while(TRUE){
+    perfectGeneration = EvaluateOrganisms();
+    if( perfectGeneration==TRUE ) return generations;
+    ProduceNextGeneration();
+    ++generations;
+  }
+}
+  
+class RestrictedMatingGA    :    public GASteadyStateGA    {
+public;
+    GADefineIdentity(“RestrictedMatingGA”,    288);
+    RestrictedMatingGA (const GAGenome&    g)    :    GASteadyStateGA(g)    {}
+    virtual    -RestrictedMatingGA ()    {}
+    virtual    void step ();
+    RestrictedMatingGA    &    operator++()    {    step();    return *this;    }
+};
+
+void
+RestrictedMatingGA::step ()    {
+    int    i, k;
+    for (i=0;    i<tmpPop->size ();    i++)    {
+        mom = &(pop->select ());
+        k=0;
+        do    {
+             k++;    dad    = &(pop->select ());
+        }    while(mom->compare(*dad) < THRESHOLD && k<pop->size ());
+        stats.numse1 += 2;
+        if (GAFlipCoin (pCrossover ());
+            stats.numcro +=    (*scross) (*mom, *dad,    &&tmpPop->individual (i), 0);
+        else
+            tmpPop->individual (i).copy (*mom);
+        stats.nummut +=    tmpPop->individual (i) .mutate(pMutation) ());
+    }
+    for (i=0; i<tmpPop->size ();    i++)
+        pop->add (tmpPop->individual (i));
+    pop->evaluate ();        // get info about current pop for next
+    time pop->scale ();            // remind the population to do its scaling
+    for (i=0; i<tmpPop->size ();    i++>)
+        pop->destroy (GAPopulation::WORST, GAPopulation::SCALED);
+    stats..update (*pop);                // update the statistics by one generation
+}
+
+class SigmaTruncationScaling    :    public GAScalingScheme    {
+public:
+    GADefineIdentity (“SigmaTruncationScaling”, 286);
+    SigmaTruncationScaling (float m=gaDefSigmaTruncationMultiplier)    :
+        c(m)    {}
+    SigmaTruncationScaling (const SigmaTruncationScaling & arg)
+        {copy (arg);}
+    SigmaTruncationScaling & operator=(const GAScalingScheme & arg)
+        {    copy(arg);    return    *this;    }
+    virtual    -SigmaTruncationScaling()    {}
+    virtual    GAScalingScheme    *    clone(}    const
+        {    return new SigmaTruncationScaling(*this); }
+    virtual void evaluate(const GAPopulation & p);
+    virtual void copy(const GAScalingScheme & arg) {
+        if (&arg !=    this    &&    sameClass(arg))    {
+            GAScalingScheme::copy(arg);
+            c=((SigmaTruncationScaling&)arg).c;
+        }
+    }
+    float multiplier(float fm)    {    return c=fm;    }
+    float multiplier()    const    {    return c;    }
+
+protected:
+    float c;                    // std deviation multiplier
+};
+
+void
+SigmaTruncationScaling::evaluate(const GAPopulation & p)    {
+    float h;
+    for(int i=0; i<p.size(); i++) {
+        h = p.individual (i).score()    -p.ave() + c    * p.dev();
+        if(h < 0)     h = 0;
+        p.individual (i).health (h);
+    }
+}
